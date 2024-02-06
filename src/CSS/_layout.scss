@@ -101,6 +101,22 @@ header {
     }
 }
 
+#main_animation {
+    @extend #main_index;
+    h1 {
+        padding-top: 70px;
+    }
+
+    section {
+        width: 800px;
+        max-width: 80%;
+        padding-top: 0
+    }
+    p {
+        @extend h2;
+    }
+}
+
 
 //annat färgschema för mörkt tema
 @media (prefers-color-scheme:dark) {
