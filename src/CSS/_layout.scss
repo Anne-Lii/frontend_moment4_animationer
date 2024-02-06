@@ -1,0 +1,248 @@
+@use "base";
+
+
+body {
+    width: 100%;
+    background: base.$primaryBackground;
+}
+
+header {
+    width: 100%;
+    height: 150px;
+    background-color: base.$primaryColor;
+    img {
+        width: 250px;
+        max-width: 60%;
+       position: relative;
+       top: 10px;
+       left: 20px;
+        
+    }
+}
+
+//dölj dropdownmenyn på större skärmar än 800 pixlar
+#open-menu,
+#nav-menu {
+    display: none;
+}
+
+//navigeringen för större skärmar än 800 pixlar
+#nav-bigscreen {
+
+    width: 100%;
+    background-color: base.$lighterColor;
+    height: 50px;
+
+    ul {
+        width: 100%;
+        list-style: none;
+        display: flex;
+        justify-content: space-around;
+        padding-top: 10px;
+    }
+
+    a {
+        color: base.$darkerColor;
+        font-size: 1.4em;
+        font-weight: bolder;
+        text-transform: uppercase;
+        text-decoration: none;
+
+        &:hover {
+            color: base.$primaryColor;
+            cursor: pointer;
+        }
+    }
+}
+
+.activated {
+    text-decoration: underline;
+}
+
+#main_index {
+
+    h1,
+    h2 {
+        @include base.flexCenter();
+        padding-top: 55px;
+        color: base.$darkerColor;
+        max-width: 100%;
+    }
+
+    section {
+        max-width: 1000px;
+        margin: auto;
+        padding: 100px 0;
+
+        img {
+            max-width: 90%;
+            width: 700px;
+            display: block;
+            margin: auto;
+            box-shadow: 0 0 50px;
+            border-radius: base.$roundedCornersPics;
+        }
+    }
+}
+
+#main_sass {
+    @extend #main_index;
+    h1 {
+        padding-top: 70px;
+    }
+
+    section {
+        width: 800px;
+        max-width: 80%;
+        padding-top: 0
+    }
+    p {
+        @extend h2;
+    }
+}
+
+
+//annat färgschema för mörkt tema
+@media (prefers-color-scheme:dark) {
+    body {
+        background-color: base.$primaryBackgroundDark;
+    }
+    header {
+        background-color: base.$headerDark;
+    }
+
+    @if (prefers-color-scheme:dark) {
+        h1 {
+            font-size: 30px;
+        }
+        p {
+            font-size: 1.6em;
+            font-weight: bold;
+        }
+        section {
+            img {
+                padding: 10px;
+            }
+        }
+    }
+}
+
+//annan navigeringsmeny för mindre skärmar
+@media screen and (max-width: 800px) {
+
+    //dölj navigeringen för de större skärmarna
+    #nav-bigscreen {
+        display: none;
+    }
+
+    header {
+        height: 150px;
+
+        img {
+            width: 250px;
+            max-width: 50%;
+        }
+    }
+
+    //dropdown meny
+    #nav-menu {
+        min-width: 300px;
+        width: 100%;
+        height: 45vh;
+        background-color: base.$lighterColor ;
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: none; // denna togglas mellan block och none för att visa och gömma menyn
+        z-index: 10;
+
+        ul {
+            position: relative;
+            top: 120px;
+            width: 100%;
+            text-align: center;
+            list-style-type: none;
+        }
+
+        li {
+            padding: 20px 0;
+            width: 100%;
+            cursor: pointer;
+
+            &:hover {
+                background-color: base.$primaryColor;
+            }
+        }
+
+        a {
+            text-decoration: none;
+            color: base.$darkerColor;
+            font-size: 1.6em;
+            font-weight: bolder;
+            padding: 20px 40%;
+        }
+    }
+
+    // Meny-knappen för att öppna dropdown menyn
+    #open-menu {
+        //flexibel display för att öppna och stänga meny
+        display: flex;
+        background-color: base.$lighterColor ;
+        padding: 13px;
+        cursor: pointer;
+        position: absolute;
+        top: 40px;
+        right: 30px;
+        box-shadow: none;
+        border: none;
+        border-radius: 15px;
+    }
+
+
+    //hamburgemenyn strecken
+    .bars {
+        width: 45px;
+        height: 5px;
+        border-radius: 10px;
+        display: block;
+        background-color: base.$darkerColor;
+        margin: 7px 0;
+    }
+
+    //stängknappen
+    #close-menu {
+        display: flex;
+        margin: 2% 2%;
+        padding: 20px 20px;
+        position: absolute;
+        top: 30px;
+        right: 25px;
+        cursor: pointer;
+        box-shadow: none;
+        border: none;
+        border-radius: 15px;
+        background-color: base.$lighterColor;
+
+        &:hover {
+            background-color: base.$primaryColor;
+        }
+
+        .cross1 {
+            transform: rotate(45deg);
+            position: relative;
+            top: 7px;
+            width: 30px;
+            background-color: base.$darkerColor;
+            padding: 2%;
+        }
+
+        .cross2 {
+            transform: rotate(135deg);
+            position: relative;
+            top: -6px;
+            width: 30px;
+            background-color: base.$darkerColor;
+            padding: 2%;
+        }
+    }
+}

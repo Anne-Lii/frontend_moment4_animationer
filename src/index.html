@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/main.scss">
+    <title>Frontend Sass</title>
+    <script src="JS/main.js" type="module"></script>
+</head>
+<body>
+    <header>
+       <img src="pictures/logo_png_brun.png" alt="logotyp">
+    </header>
+
+    <nav id="nav-bigscreen">
+        <ul>
+            <li class="activated"><a href="index.html">Startsida</a></li>
+            <li><a href="sass.html">Sass</a></li>
+            <li><a href="">Bilder</a></li>
+            <li><a href="">Länkar</a></li>
+            <li><a href="">Kontakt</a></li>
+        </ul>
+    </nav>
+
+     <!--Menyknapp för att öppna dropdown meny-->
+     <button class="menu-btn open" id="open-menu">
+        <span class="menu-icon" id="menu-icon-bars">
+            <span class="bars"></span>
+            <span class="bars"></span>
+            <span class="bars"></span>
+        </span>
+    </button>
+
+    <!--dropdown meny och stängknappen -->
+    <nav id="nav-menu">
+
+        <!--Stängknappen som visas när dropmenyn är utfälld-->
+        <button id="close-menu">
+            <span class="menu-icon" id="menu-icon-cross">
+                <span class="bars cross1"></span>
+                <span class="bars cross2"></span>
+            </span>
+        </button>
+        <ul>
+            <li class="activated"><a href="index.html">Startsida</a></li>
+            <li><a href="sass.html">Sass</a></li>
+            <li><a href="">Bilder</a></li>
+            <li><a href="">Länkar</a></li>
+            <li><a href="">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <!--huvudinnehållet på sidan -->
+    <main id="main_index">
+        <h1>time is free<br> but it´s priceless<br><br>
+            you can´t own it<br> but you can use it<br><br>
+            you can´t keep it<br> but you can spend it<br><br>
+            once you´ve lost it<br> you can NEVER get it back</h1>
+            <h2>- Harvey MacKay -</h2>
+
+        <!--section med picture-elementet för olika filformat, komprimering och storlek -->
+        <section id="section1">
+           <picture id="pic1">
+            <source srcset="pictures/field.jpg?as=avif&quality=70&width=700" type="image/avif">
+            <source srcset="pictures/field.jpg?as=webp&quality=70&width=700" type="image/webp">
+            <source srcset="pictures/field.jpg?quality=70&width=700" type="image/jpeg">
+            <img src="pictures/field.jpg?width=300" alt="test">
+           </picture>          
+        </section>
+        
+       
+    </main>
+    <footer>
+
+    </footer>    
+</body>
+</html>

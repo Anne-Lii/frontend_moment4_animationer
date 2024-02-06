@@ -1,0 +1,46 @@
+//variabler
+$roundedCornersPics: 50%;
+
+//färgvariabler för light-mode
+$primaryBackground: #f8f4f7;
+$primaryColor: #DFD3C3;
+$darkerColor: darken($primaryColor, 40%);
+$lighterColor: lighten($primaryColor, 10%);
+
+
+//färgvariabler för dark-mode
+$primaryBackgroundDark: darken($primaryColor, 60%);
+$headerDark: darken($primaryColor, 40%);
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+p {
+    font-size: 1.6em;
+    font-weight: 400;
+}
+
+
+
+
+//mixin för att centrera
+@mixin flexCenter() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
