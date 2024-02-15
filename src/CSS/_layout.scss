@@ -186,7 +186,20 @@ header {
     }
 }
 
+#main_diagram {
+    @extend #main_index;
 
+}
+
+#stapelChart {
+    width: 1000px;
+    max-width: 80%;
+    margin: auto;
+}
+
+#main_map {
+    @extend #main_index;
+}
 
 //annat färgschema för mörkt tema
 @media (prefers-color-scheme:dark) {
