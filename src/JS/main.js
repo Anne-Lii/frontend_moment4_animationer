@@ -25,22 +25,25 @@ async function init() {
 
             //skickar data från API vidare till andra funktioner
             filterInput(data);
-            displayData(data);
         }*/
+        displayData(data);
     } catch (error) {
         
     }
 }
 
 const stapelChartEl = document.getElementById('stapelChart');
+const doughnutChartEl = document.getElementById('doughnutChart');
 
 new Chart(stapelChartEl, {
-  type: 'bar',
-  data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  type: 'bar', //typ av diagram (stapeldiagram)
+  data: { //datan för diagrammet
+    labels: ['Kurs1', 'Kurs2', 'Kurs3', 'Kurs4', 'Kurs5', 'Kurs6'], //namnen på de olika staplarna
     datasets: [{
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
+      label: 'Antal sökande', //vad staplarna består av
+      backgroundColor: 'pink',
+      borderColor: 'darkpink',
+      data: [12, 19, 3, 5, 2, 3], //input värden
       borderWidth: 1
     }]
   },
@@ -52,6 +55,29 @@ new Chart(stapelChartEl, {
     }
   }
 });
+
+
+
+
+
+new Chart(doughnutChartEl, {
+    type: 'doughnut',//typ av diagram (cirkeldiagram)
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
 
 //filtrering från sökrutan
 /*function filterInput(data) {

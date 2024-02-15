@@ -187,18 +187,27 @@ header {
 }
 
 #main_diagram {
-    @extend #main_index;
+    @extend #main_sass;
+    h1 {
+        padding-bottom: 60px;;
+    }
 
 }
 
 #stapelChart {
-    width: 1000px;
-    max-width: 80%;
+    width: 800px;
+    max-width: 90%;
     margin: auto;
 }
 
+#doughnutChart {
+    @extend #stapelChart;
+    margin-top: 200px;
+    margin-bottom: 200px;
+}
+
 #main_map {
-    @extend #main_index;
+    @extend #main_sass;
 }
 
 //annat färgschema för mörkt tema
