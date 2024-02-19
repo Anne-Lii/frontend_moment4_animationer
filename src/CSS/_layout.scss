@@ -186,7 +186,29 @@ header {
     }
 }
 
+#main_diagram {
+    @extend #main_sass;
+    h1 {
+        padding-bottom: 60px;;
+    }
 
+}
+
+#stapelChart {
+    width: 800px;
+    max-width: 90%;
+    margin: auto;
+}
+
+#doughnutChart {
+    @extend #stapelChart;
+    margin-top: 200px;
+    margin-bottom: 200px;
+}
+
+#main_map {
+    @extend #main_sass;
+}
 
 //annat färgschema för mörkt tema
 @media (prefers-color-scheme:dark) {

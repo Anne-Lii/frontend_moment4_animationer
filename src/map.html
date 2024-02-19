@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="CSS/main.scss">
-    <title>Frontend</title>
+    <title>Frontend Sass</title>
     <script src="JS/main.js" type="module"></script>
 </head>
 <body>
@@ -20,9 +20,9 @@
         <ul>
             <li><a href="index.html">Startsida</a></li>
             <li><a href="sass.html">Sass</a></li>
-            <li class="activated"><a href="animation.html">Animationer</a></li>
+            <li><a href="animation.html">Animationer</a></li>
             <li><a href="diagram.html">Diagram</a></li>
-            <li><a href="map.html">Karta</a></li>
+            <li class="activated"><a href="map.html">Karta</a></li>
         </ul>
     </nav>
 
@@ -38,7 +38,7 @@
     <!--dropdown meny och stängknappen -->
     <nav id="nav-menu">
 
-        <!--Stängknappen som visas när dropmenyn är utfälld-->git 
+        <!--Stängknappen som visas när dropmenyn är utfälld-->
         <button id="close-menu">
             <span class="menu-icon" id="menu-icon-cross">
                 <span class="bars cross1"></span>
@@ -48,31 +48,16 @@
         <ul>
             <li><a href="index.html">Startsida</a></li>
             <li><a href="sass.html">Sass</a></li>
-            <li class="activated"><a href="animation.html">Animationer</a></li>
+            <li><a href="animation.html">Animationer</a></li>
             <li><a href="diagram.html">Diagram</a></li>
-            <li><a href="map.html">Karta</a></li>
+            <li class="activated"><a href="map.html">Karta</a></li>
         </ul>
     </nav>
 
     <!--huvudinnehållet på sidan -->
-    <main id="main_animation">
-
-        <div id="animation-container">
-            <h1>Animationer</h1>
-
-            <img src="pictures/astro.png" alt="litet sött får" id="astro"> <!-- BIld av <a href="https://pixabay.com/sv/users/openclipart-vectors-30363/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=153581">OpenClipart-Vectors</a> från <a href="https://pixabay.com/sv//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=153581">Pixabay</a> -->
-            
-            <picture>
-                <img src="pictures/moon.png?as=webp&quality=70" type="image/webp" alt="stor måne"> <!--Photo by <a href="https://unsplash.com/@chuttersnap?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">CHUTTERSNAP</a> on <a href="https://unsplash.com/photos/blue-moon-pE8WW245aik?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>-->
-            </picture>
-            <div id="animation1">
-                <img src="pictures/bee.png" alt="litet hjärta"> <!--BIld av <a href="https://pixabay.com/sv/users/ralfdesign-2031934/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=5132048">Ralf Designs</a> från <a href="https://pixabay.com/sv//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=5132048">Pixabay</a>-->
-            </div>
-
-         
-
-        </div>
-
+    <main id="main_map">
+       <h1>Karta</h1>
+    <div id="map"></div>
     </main>
     <footer>
 
