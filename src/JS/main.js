@@ -37,7 +37,6 @@ async function init() {
 
     //plocka ut de 5 första programmen med högst antal sökande
     let popularPrograms = sortedPrograms.slice(0, 5);
-    console.log(popularPrograms);
 
     //plocka ut kursnamnen
     let courseNames = popularCourses.map(course => course.name);
@@ -79,7 +78,7 @@ async function init() {
       data: {
         labels: programNames,
         datasets: [{
-          label: '# of Votes',
+          label: 'Antal sökande',
           data: programValues,
           borderWidth: 1
         }]
