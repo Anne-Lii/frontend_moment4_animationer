@@ -3,171 +3,97 @@
 
 window.onload = init;
 
-let toggleSort = 1;//global variabel som lagrar värdet 1 för toggling.
+const stapelChartEl = document.getElementById('stapelChart');
+const doughnutChartEl = document.getElementById('doughnutChart');
 
 //fetch-anrop och konvertera till js
 async function init() {
 
-    const url = "https://studenter.miun.se/~mallar/dt211g/"; //API adressen
+  const url = "https://studenter.miun.se/~mallar/dt211g/"; //API adressen
 
-    try {
-        
-        const response = await fetch(url);//inväntas svar från fetchen
-        let data = await response.json();//inväntar svar från konverteringen till js
+  try {
 
-        console.log(data);
+    const response = await fetch(url);//inväntas svar från fetchen
+    let data = await response.json();//inväntar svar från konverteringen till js
 
-       /* const headlines = document.getElementsByTagName("th");
-        for (let i = 0; i < headlines.length; i++) {
-            headlines[i].addEventListener("click", function () {
-                sortData(data, i);
-            });
+    //sortera ut enbart kurser
+    let courses = data.filter(e => e.type == 'Kurs');
 
-            //skickar data från API vidare till andra funktioner
-            filterInput(data);
-        }*/
-        displayData(data);
-    } catch (error) {
-        
-    }
-}
+    //sortera ut enbart program
+    let programs = data.filter(e => e.type == 'Program');
 
-const stapelChartEl = document.getElementById('stapelChart');
-const doughnutChartEl = document.getElementById('doughnutChart');
+    //sortera efter antal sökande i kurser
+    let sortedCourses = courses.sort(function (a, b) {
+      return b.applicantsTotal - a.applicantsTotal;
+    });
 
-new Chart(stapelChartEl, {
-  type: 'bar', //typ av diagram (stapeldiagram)
-  data: { //datan för diagrammet
-    labels: ['Kurs1', 'Kurs2', 'Kurs3', 'Kurs4', 'Kurs5', 'Kurs6'], //namnen på de olika staplarna
-    datasets: [{
-      label: 'Antal sökande', //vad staplarna består av
-      backgroundColor: 'pink',
-      borderColor: 'darkpink',
-      data: [12, 19, 3, 5, 2, 3], //input värden
-      borderWidth: 1
-    }]
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
-  }
-});
+    //sortera efter antal sökande i program
+    let sortedPrograms = programs.sort(function (a, b) {
+      return b.applicantsTotal - a.applicantsTotal;
+    });
 
+    //plocka ut de 6 första kurserna med högst antal sökande
+    let popularCourses = sortedCourses.slice(0, 6);
 
+    //plocka ut de 5 första programmen med högst antal sökande
+    let popularPrograms = sortedPrograms.slice(0, 5);
+    console.log(popularPrograms);
 
+    //plocka ut kursnamnen
+    let courseNames = popularCourses.map(course => course.name);
 
+    //plocka ut programnamnen
+    let programNames = popularPrograms.map(program => program.name);
 
-new Chart(doughnutChartEl, {
-    type: 'doughnut',//typ av diagram (cirkeldiagram)
-    data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
+    //plocka ut antalet sökande på kurser
+    let courseValues = popularCourses.map(course => course.applicantsTotal);
+    
+    //plocka ut antalet sökande på program
+    let programValues = popularPrograms.map(prog => prog.applicantsTotal);
+
+    //nytt diagram
+    new Chart(stapelChartEl, {
+      type: 'bar', //typ av diagram (stapeldiagram)
+      data: { //datan för diagrammet
+        labels: courseNames, //namnen på de olika staplarna
+        datasets: [{
+          label: 'Antal sökande', //vad staplarna består av
+          backgroundColor: 'pink',
+          borderColor: 'darkpink',
+          data: courseValues, //värden som stoppas in i diagrammet
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
         }
       }
-    }
-  });
-
-//filtrering från sökrutan
-/*function filterInput(data) {
-    let inputEl = document.getElementById("sok");
-    inputEl.addEventListener("keyup", function () {
-        let filter = inputEl.value.toUpperCase();
-    
-        let filteredData = data.filter(course => {
-            return course.code.toUpperCase().includes(filter) ||
-                course.coursename.toUpperCase().includes(filter) ||
-                course.progression.toUpperCase().includes(filter);
-    
-        });    
-
-        displayData(filteredData)    
     });
-}*/
 
-/*function sortData(data, headline) {
-    //sparar datan så den inte ändras
-    const sortedData = [...data];
 
-    toggleSort *= -1;//multiplicerar variabeln med -1 för att toggla mellan 1 (true) och -1 (false).
-
-    switch (headline) {
-        case 0: //kurskoden index 0
-            sortedData.sort((a, b) => toggleSort * a.code.localeCompare(b.code));
-            break;
-
-        case 1://kursnamnet index 1
-            sortedData.sort((a, b) => toggleSort * a.coursename.localeCompare(b.coursename));
-            break;
-
-        case 2://progressionen index 2
-            sortedData.sort((a, b) => toggleSort * a.progression.localeCompare(b.progression));
-            break;
-
-        default:
-            break;
-    }
-
-    displayData(sortedData);  //skickar uppdaterade datan till displaydata funktionen
-}*/
-
-/*function displayData(data) {
-    const listEl = document.getElementById("list");
-    listEl.innerHTML = ""; //rensar tidigare lista 
-
-    //Loopa igenom och skriv ut till sidan
-    data.forEach((courses) => {
-
-        listEl.innerHTML += `
-        <tr>
-            <td>${courses.code}</td>
-            <td>${courses.coursename}</td>
-            <td>${courses.progression}</td>
-        </tr>
-        `;
+    new Chart(doughnutChartEl, {
+      type: 'doughnut',//typ av diagram (cirkeldiagram)
+      data: {
+        labels: programNames,
+        datasets: [{
+          label: '# of Votes',
+          data: programValues,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
     });
-}*/
 
+  } catch (error) {
 
-
-
-
-
-
-
-
-
-
-//hämta element från HTML-koden
-let openButtonEl = document.getElementById("open-menu");
-let closeButtonEl = document.getElementById("close-menu");
-
-//eventlyssnare
-openButtonEl.addEventListener("click", togglemenu);
-closeButtonEl.addEventListener("click", togglemenu);
-
-//funktion som visar och gömmer dropdownmenyn för skärmar mindre än 800 pixlar
-function togglemenu() {
-
-    let navMenuEl = document.getElementById("nav-menu");    
-
-    let style = window.getComputedStyle(navMenuEl);    
-
-    if(style.display === "none") {
-        navMenuEl.style.display = "block";
-    } else {
-        navMenuEl.style.display = "none";
-    }
+  }
 }
-
