@@ -208,6 +208,29 @@ header {
 
 #main_map {
     @extend #main_sass;
+
+    #searchSection {
+        width: 1000px;
+        max-width: 100%;
+        margin: auto;
+
+        input {
+            width: 60%;
+            height: 31px;
+            margin-top: 30px;
+        }
+        button {
+            width: 50px;
+            height: 35px;
+        }
+    }
+    iframe {
+        height: 50vh;
+        max-height: 800px;
+        width: 800px;
+        max-width: 90%;
+        margin: 30px 0 0 0;
+    }
 }
 
 //annat färgschema för mörkt tema

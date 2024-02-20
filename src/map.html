@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="CSS/main.scss">
     <title>Frontend Sass</title>
     <script src="JS/main.js" type="module"></script>
+    <script src="JS/map.js" type="module"></script>
+
 </head>
 <body>
     <header>
@@ -56,8 +58,16 @@
 
     <!--huvudinnehållet på sidan -->
     <main id="main_map">
-       <h1>Karta</h1>
-    <div id="map"></div>
+        <h1>Karta</h1>
+        <section>
+            <div id="searchSection">
+                <label for="searchField">Adress: </label>
+                <input type="text" id="searchField">
+                <button id="searchButton">Sök</button>
+            </div>
+            <iframe id="map" width="80%"></iframe>
+        </section>
+        
     </main>
     <footer>
 
