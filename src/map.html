@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="CSS/main.scss">
     <title>Frontend Sass</title>
-    <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>  OPENSTREETMAPS-->
     <script src="JS/main.js" type="module"></script>
     <script src="JS/map.js" type="module"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -17,6 +16,8 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
 
 </head>
 <body>
@@ -67,8 +68,15 @@
     <main id="main_map">
         <h1>Karta</h1>
         
-        <div id="map"></div>
+      
 
+        <div id="searchSection">
+            <label for="searchField">Sök: </label>
+            <input type="text" id="searchField">
+            <button id="searchButton">Sök</button>
+        </div>
+
+        <div id="map"></div>
 
        <!--
         <section>
