@@ -6,8 +6,10 @@ const searchButtonEl = document.getElementById("searchButton");
 const searchFieldEl = document.getElementById("searchField");
 const mapEl = document.getElementById("map");
 
-let map = L.map('map').setView([58.03222280237399, 14.349985267448993], 12);
+//startkoordinater för kartan vid sidladdning
+const map = L.map('map').setView([58.03222280237399, 14.349985267448993], 12);
 
+//lägger till ett lager på befintlig karta med kartsökning
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -16,19 +18,20 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //placera markör
 let marker = L.marker([58.03222280237399, 14.349985267448993]).addTo(map);
 
-//Locate controle
+//"Här är jag" funktion
 L.control.locate().addTo(map);
 
 
-//event vid klick på SÖK-knappen
+//eventlistener vid klick på SÖK-knappen
 searchButtonEl.addEventListener("click", function() {   
     
-    let searchInput = searchFieldEl.value;//input från sökfältet
-    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${searchInput}`;
+    const searchInput = searchFieldEl.value;//variabel med input från sökfältet
 
-  
+    //API adressen plus värdet från inputfältet
+    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${searchInput}`;   
 
-    fetch(url) //hämta data från API plus input från sökfältet
+    //fetch API
+    fetch(url) 
         .then(response => response.json())//konvertera till javascript
         .then(data => {//ger mig data tillbaka
       
@@ -37,13 +40,10 @@ searchButtonEl.addEventListener("click", function() {
             let lon = data[0].lon;
             
             //uppdatera kartan med nya koordinater och zoom
-            map.setView([lat, lon], 12);
+            map.setView([lat, lon], 14);
 
             // Placera markören på de nya koordinaterna
             marker.setLatLng([lat, lon]);       
-
-            //uppdatera kartan med nya koordinater
-            mapEl.src = `https://www.openstreetmap.org/export/embed.html?bbox=${lon},${lat},${lon},${lat}&layer=mapnik`;
         })
 
         //fånga error

@@ -20,41 +20,36 @@ async function init() {
     const response = await fetch(url);//inväntas svar från fetchen
     let data = await response.json();//inväntar svar från konverteringen till js
 
-    //sortera ut enbart kurser
+    //sortera ut enbart KURSER
     let courses = data.filter(e => e.type == 'Kurs');
-
-    //sortera ut enbart program
+    //sortera ut enbart PROGRAM
     let programs = data.filter(e => e.type == 'Program');
 
-    //sortera efter antal sökande i kurser
+    //sortera efter antal sökande i KURSER
     let sortedCourses = courses.sort(function (a, b) {
       return b.applicantsTotal - a.applicantsTotal;
     });
-
-    //sortera efter antal sökande i program
+    //sortera efter antal sökande i PROGRAM
     let sortedPrograms = programs.sort(function (a, b) {
       return b.applicantsTotal - a.applicantsTotal;
     });
 
-    //plocka ut de 6 första kurserna med högst antal sökande
+    //plocka ut de 6 första KURSERNA med högst antal sökande
     let popularCourses = sortedCourses.slice(0, 6);
-
-    //plocka ut de 5 första programmen med högst antal sökande
+    //plocka ut de 5 första PROGRAMMEN med högst antal sökande
     let popularPrograms = sortedPrograms.slice(0, 5);
 
-    //plocka ut kursnamnen
+    //plocka ut KURSNAMNEN
     let courseNames = popularCourses.map(course => course.name);
-
-    //plocka ut programnamnen
+    //plocka ut PROGRAMNAMNEN
     let programNames = popularPrograms.map(program => program.name);
 
-    //plocka ut antalet sökande på kurser
-    let courseValues = popularCourses.map(course => course.applicantsTotal);
-    
-    //plocka ut antalet sökande på program
+    //plocka ut antalet sökande på KURSER
+    let courseValues = popularCourses.map(course => course.applicantsTotal);    
+    //plocka ut antalet sökande på PROGRAM
     let programValues = popularPrograms.map(prog => prog.applicantsTotal);
 
-    //nytt diagram
+    //Diagram 1nytt diagram
     new Chart(stapelChartEl, {
       type: 'bar', //typ av diagram (stapeldiagram)
       data: { //datan för diagrammet
@@ -67,7 +62,9 @@ async function init() {
           borderWidth: 1
         }]
       },
-      options: {
+      options:{
+      indexAxis:"y",
+      responsive: true, 
         scales: {
           y: {
             beginAtZero: true
@@ -76,7 +73,7 @@ async function init() {
       }
     });
 
-
+    //Diagram 2
     new Chart(doughnutChartEl, {
       type: 'doughnut',//typ av diagram (cirkeldiagram)
       data: {
@@ -88,6 +85,7 @@ async function init() {
         }]
       },
       options: {
+        responsive: true, 
         scales: {
           y: {
             beginAtZero: true
