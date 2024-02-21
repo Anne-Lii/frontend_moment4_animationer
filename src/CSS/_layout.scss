@@ -209,6 +209,14 @@ header {
 #main_map {
     @extend #main_sass;
 
+    #map { 
+        height: 1000px; 
+        width: 1000px;
+        max-width: 100%;
+        margin: auto;
+     
+    }
+
     #searchSection {
         width: 1000px;
         max-width: 100%;
@@ -267,7 +275,7 @@ header {
 }
 
 
-//annan navigeringsmeny för mindre skärmar
+//layout för mindre skärmar
 @media screen and (max-width: 800px) {
 
     //dölj navigeringen för de större skärmarna
@@ -385,4 +393,6 @@ header {
             padding: 2%;
         }
     }
+
+
 }
